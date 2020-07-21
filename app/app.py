@@ -9,8 +9,8 @@ def index():
     try:
         host_name = socket.gethostname()
         host_ip = socket.gethostbyname(host_name)
-        pass = (os.environ['PASSWORD'])
-        return render_template('index.html', hostname=host_name, ip=host_ip, secret=pass)
+        secret = (os.environ['PASSWORD'])
+        return render_template('index.html', hostname=host_name, ip=host_ip, secret=secret)
     except:
         return render_template('error.html')
 
