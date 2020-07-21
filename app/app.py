@@ -1,5 +1,6 @@
 from flask import Flask,render_template
 import socket
+import os
 
 app = Flask(__name__)
 
@@ -8,7 +9,8 @@ def index():
     try:
         host_name = socket.gethostname()
         host_ip = socket.gethostbyname(host_name)
-        return render_template('index.html', hostname=host_name, ip=host_ip)
+        pass=(os.environ['PASSWORD'])
+        return render_template('index.html', hostname=host_name, ip=host_ip, secret=pass)
     except:
         return render_template('error.html')
 
