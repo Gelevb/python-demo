@@ -36,6 +36,8 @@ spec:
 {{- end }}
         envFrom:
 {{ toYaml .Values.envFrom | indent 10 }}
+        - secretRef:
+            name: mysecrets
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         resources:
