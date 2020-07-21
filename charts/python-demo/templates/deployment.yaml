@@ -27,6 +27,9 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}
+        envFrom:
+        - secretRef:
+            name: mysecrets
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
@@ -36,8 +39,6 @@ spec:
 {{- end }}
         envFrom:
 {{ toYaml .Values.envFrom | indent 10 }}
-        - secretRef:
-            name: mysecrets
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         resources:
